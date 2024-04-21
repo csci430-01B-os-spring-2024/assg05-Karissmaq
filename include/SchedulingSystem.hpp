@@ -158,6 +158,11 @@ public:
   ~SchedulingSystem();
   void resetSystem();
 
+  int getSystemTime() const;
+  int getNumProcesses() const;
+  bool isCpuIdle() const;
+  string getRunningProcessName() const;
+
   // accessor methods and system information
   Pid getRunningPid() const;
   Process* getProcessTable() const;

@@ -129,6 +129,62 @@ void SchedulingSystem::resetSystem()
   policy->resetPolicy();
 }
 
+/**
+ * getSystemTime() function
+ *
+ * This function returns the current system time of the simulator.
+ * It is using an int.
+ *
+ */
+
+int SchedulingSystem::getSystemTime() const
+{
+  return systemTime;
+}
+
+/**
+ * getNumProcesses() function
+ *
+ * This function returns the total number of processes in
+ * the process table. It will be the total num of proccesses we will
+ * be running in the system.
+ */
+int SchedulingSystem::getNumProcesses() const
+{
+  return numProcesses;
+}
+
+/**
+ * isCpuIdle() function
+ *
+ * This function returns true if the cup is currently IDLE
+ * or false is it doee not.
+ */
+
+bool SchedulingSystem::isCpuIdle() const
+{
+  return cpu == -1;
+}
+
+/**
+ * getRunningProcessName() function
+ *
+ * This funcation returns the name of he current
+ *  process running "IDLE".
+ *
+ */
+string SchedulingSystem::getRunningProcessName() const
+{
+  if (isCpuIdle())
+  {
+    return "IDLE";
+  }
+  else
+  {
+    return process[cpu].name;
+  }
+}
+
 /** @brief get pid of running process
  *
  * Returns the process identifier (pid) of the process
