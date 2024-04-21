@@ -519,6 +519,31 @@ void SchedulingSystem::checkProcessArrivals()
 }
 
 /**
+
+dispatchCpuIfIdle() function 
+
+This function verifies whether the CPU is currently idle and 
+attempts to allocate a process. It selects a new process to be a
+ssigned to the CPU and allows it to run for bit. 
+
+*/
+
+void SchedulingSystem:: dispatchCpuIfIdle() 
+{
+  
+if (isCpuIdle())
+{
+  cpu = policy -> dispatch(); 
+  if (process[cpu].startTime == NOT_STARTED)
+  {
+    process[cpu].startTime = systemTime; 
+  }
+}
+  
+}
+
+
+/**
  * @brief check if a process did arrive
  *
  * Convenience method for some policies.  If a process does

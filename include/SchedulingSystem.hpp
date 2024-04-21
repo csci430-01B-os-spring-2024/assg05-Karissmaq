@@ -163,6 +163,7 @@ public:
   bool isCpuIdle() const;
   string getRunningProcessName() const;
   bool allProcessesDone() const; 
+  void dispatchCpuIfIdle(); 
 
   // accessor methods and system information
   Pid getRunningPid() const;
