@@ -596,6 +596,33 @@ void SchedulingSystem::simulateCpuCycle()
 }
 
 /**
+checkProcessFinished() function 
+
+This function examines whether the currently running process 
+has completed its execution. Once complete it updates 
+the process metrics and resets the CPU to an idle state.
+*/
+void SchedulingSystem::checkProcessFinished()
+{
+  if (isCpuIdle())
+  {
+    return; 
+  }
+
+  if (process[cpu].usedTime >= process[cpu].serviceTime)
+  {
+    process[cpu].endTime = systemTime; 
+    process[cpu].done = true; 
+
+    cpu = IDLE; 
+  }
+}
+
+
+
+
+
+/**
  * @brief process preemption
  *
  * Check if process needs to be preempted.  Preemption is a policy

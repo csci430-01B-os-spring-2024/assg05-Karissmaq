@@ -164,6 +164,7 @@ public:
   string getRunningProcessName() const;
   bool allProcessesDone() const; 
   void dispatchCpuIfIdle(); 
+  void checkProcessFinished(); 
 
   // accessor methods and system information
   Pid getRunningPid() const;
