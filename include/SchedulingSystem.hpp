@@ -162,6 +162,7 @@ public:
   int getNumProcesses() const;
   bool isCpuIdle() const;
   string getRunningProcessName() const;
+  bool allProcessesDone() const; 
 
   // accessor methods and system information
   Pid getRunningPid() const;

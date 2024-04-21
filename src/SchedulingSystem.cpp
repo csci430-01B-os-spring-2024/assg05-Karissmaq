@@ -214,6 +214,28 @@ Process* SchedulingSystem::getProcessTable() const
   return process;
 }
 
+/** 
+allProcessesDone() function 
+
+This function checks to see if any process is still not done.
+If the process is still not done it will return false 
+whule if it is done it will return true. 
+ */
+
+bool SchedulingSystem::allProcessesDone() const 
+{
+   for (int i = 0; i < numProcesses; ++i) {
+    if (!process[i].done) {
+      return false;
+    }
+  }
+  return true;
+} 
+
+
+
+
+
 /** @brief final results table
  *
  * Calculate the final results and format as a table.
