@@ -26,6 +26,7 @@ using namespace std;
 /// @brief More descriptive name for things that hold process
 ///   identifiers.  We use int values for our processes identifiers
 ///   in this simulation.
+
 typedef int Pid;
 
 /** @class RRSchedulingPolicy
@@ -41,7 +42,8 @@ class RRSchedulingPolicy : public SchedulingPolicy
 private:
   /// @brief The ready queue for the RR policy, keeps track of
   ///   which process arrived first for dispatching.
-  queue<Pid> readyQueue;
+queue<Pid> readyQueue;
+
 int quantum; 
 
 int runningTimeScliceQuantum; 
