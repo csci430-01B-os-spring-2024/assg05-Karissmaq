@@ -123,7 +123,7 @@ bool RRSchedulingPolicy::preempt()
  * we want to clear out the ready queue and make sure it is
  * empty to begin with.
  */
-/*void RRSchedulingPolicy::resetPolicy()
+ void RRSchedulingPolicy::resetPolicy()
 {
   runningTimeScliceQuantum = 0; 
   currentProcess = IDLE; 
@@ -132,4 +132,4 @@ bool RRSchedulingPolicy::preempt()
   // with an empty one.
   queue<Pid> empty;
   swap(readyQueue, empty);
-}*/
+}
