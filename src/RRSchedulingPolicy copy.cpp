@@ -53,11 +53,11 @@ RRSchedulingPolicy::~RRSchedulingPolicy() {}
  * @param pid The process identifier (pid) of the newly arriving
  *   process that should now be managed by this policy.
  */
-/*void RRSchedulingPolicy::newProcess(Pid pid)
+void RRSchedulingPolicy::newProcess(Pid pid)
 {
   // put the new process on the end of the ready queue
-  readyQueue.push(pid);
-}*/
+  readyQueue.push(pid); 
+}
 
 /** dispatch a process
  * When the cpu is idle, the scheduling simulator calls this
