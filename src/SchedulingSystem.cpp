@@ -36,12 +36,14 @@ using namespace std;
  * a simulation, the most basic information will be what process scheduling
  * policy is to be used for the simulation.
  *
- * We default to a FCFS scheduling policy if none is specified when
+ * We default to a STR scheduling policy if none is specified when
  * the simulation starts.
  */
+
+
 SchedulingSystem::SchedulingSystem()
 {
-  // create a FCFS scheduling policy by default
+  // create a STR scheduling policy by default
   this->policy = new FCFSSchedulingPolicy();
 
   // make sure we are mutually associated, that the policy knows
