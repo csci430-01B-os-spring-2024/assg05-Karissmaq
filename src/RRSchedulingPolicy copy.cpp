@@ -102,7 +102,7 @@ Pid RRSchedulingPolicy::dispatch()
  * @returns bool Always returns false to indicate RR never
  *   preempts.
  */
-/*bool RRSchedulingPolicy::preempt()
+bool RRSchedulingPolicy::preempt()
 {
   
   if(runningTimeScliceQuantum >= quantum){
@@ -115,7 +115,7 @@ Pid RRSchedulingPolicy::dispatch()
     return false;
   }
   
-}*
+}
 
 /** reset policy
  * Reset or initialize the scheduling policty to an initial state,
