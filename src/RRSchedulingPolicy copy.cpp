@@ -70,7 +70,7 @@ void RRSchedulingPolicy::newProcess(Pid pid)
  * @returns pid Returns the process identifier of the process
  *   we select to run next.
  */
-/*Pid RRSchedulingPolicy::dispatch()
+Pid RRSchedulingPolicy::dispatch()
 {
   // make sure the ready queue is not empty, if it is we
   // can't dispatch at this time
@@ -89,7 +89,7 @@ void RRSchedulingPolicy::newProcess(Pid pid)
 
     return currentProcess;
   }
-}*/
+}
 
 /**
  * @brief preemption
