@@ -53,11 +53,11 @@ RRSchedulingPolicy::~RRSchedulingPolicy() {}
  * @param pid The process identifier (pid) of the newly arriving
  *   process that should now be managed by this policy.
  */
-void RRSchedulingPolicy::newProcess(Pid pid)
+/*void RRSchedulingPolicy::newProcess(Pid pid)
 {
   // put the new process on the end of the ready queue
   readyQueue.push(pid);
-}
+}*/
 
 /** dispatch a process
  * When the cpu is idle, the scheduling simulator calls this
@@ -70,7 +70,7 @@ void RRSchedulingPolicy::newProcess(Pid pid)
  * @returns pid Returns the process identifier of the process
  *   we select to run next.
  */
-Pid RRSchedulingPolicy::dispatch()
+/*Pid RRSchedulingPolicy::dispatch()
 {
   // make sure the ready queue is not empty, if it is we
   // can't dispatch at this time
@@ -89,7 +89,7 @@ Pid RRSchedulingPolicy::dispatch()
 
     return currentProcess;
   }
-}
+}*/
 
 /**
  * @brief preemption
@@ -102,7 +102,7 @@ Pid RRSchedulingPolicy::dispatch()
  * @returns bool Always returns false to indicate RR never
  *   preempts.
  */
-bool RRSchedulingPolicy::preempt()
+/*bool RRSchedulingPolicy::preempt()
 {
   
   if(runningTimeScliceQuantum >= quantum){
@@ -115,7 +115,7 @@ bool RRSchedulingPolicy::preempt()
     return false;
   }
   
-}
+}*
 
 /** reset policy
  * Reset or initialize the scheduling policty to an initial state,
@@ -123,7 +123,7 @@ bool RRSchedulingPolicy::preempt()
  * we want to clear out the ready queue and make sure it is
  * empty to begin with.
  */
-void RRSchedulingPolicy::resetPolicy()
+/*void RRSchedulingPolicy::resetPolicy()
 {
   runningTimeScliceQuantum = 0; 
   currentProcess = IDLE; 
@@ -132,4 +132,4 @@ void RRSchedulingPolicy::resetPolicy()
   // with an empty one.
   queue<Pid> empty;
   swap(readyQueue, empty);
-}
+}*/
