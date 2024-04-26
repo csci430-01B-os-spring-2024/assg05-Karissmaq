@@ -29,9 +29,10 @@ using namespace std;
  * system instance we are associated with, so we can call the paging system to
  * get needed information to make replacment decisions.
  */
-RRSchedulingPolicy::RRSchedulingPolicy()
+RRSchedulingPolicy::RRSchedulingPolicy(int quantum)
   : SchedulingPolicy()
 {
+  this-> quantum = quantum; 
   sys = NULL;
   resetPolicy();
 }
@@ -80,9 +81,13 @@ Pid RRSchedulingPolicy::dispatch()
   // otherwise pop the front item and return it
   else
   {
-    int pid = readyQueue.front();
+    currentProcess = readyQueue.front(); 
+    
     readyQueue.pop();
-    return pid;
+
+    runningTimeScliceQuantum = 0; 
+
+    return currentProcess;
   }
 }
 
@@ -99,7 +104,17 @@ Pid RRSchedulingPolicy::dispatch()
  */
 bool RRSchedulingPolicy::preempt()
 {
-  return false;
+  
+  if(runningTimeScliceQuantum >= quantum){
+    readyQueue.push(currentProcess); 
+    currentProcess = IDLE; 
+
+    return true; 
+  }
+  else {
+    return false;
+  }
+  
 }
 
 /** reset policy
@@ -110,6 +125,8 @@ bool RRSchedulingPolicy::preempt()
  */
 void RRSchedulingPolicy::resetPolicy()
 {
+  runningTimeScliceQuantum = 0; 
+  currentProcess = IDLE; 
   // make sure the queue is empty, swap a queue with a known
   // empty queue will free up the old queue and ensure we start
   // with an empty one.
