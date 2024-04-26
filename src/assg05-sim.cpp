@@ -13,7 +13,7 @@
 //#include "HRRNSchedulingPolicy.hpp"
 //#include "SPNSchedulingPolicy.hpp"
 //#include "SRTSchedulingPolicy.hpp"
-//#include "RRSchedulingPolicy.hpp"
+#include "RRSchedulingPolicy.hpp"
 #include "SchedulingSystem.hpp"
 #include "SimulatorException.hpp"
 #include <iostream>

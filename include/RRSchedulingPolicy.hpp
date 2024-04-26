@@ -42,13 +42,13 @@ class RRSchedulingPolicy : public SchedulingPolicy
 private:
   /// @brief The ready queue for the RR policy, keeps track of
   ///   which process arrived first for dispatching.
-queue<Pid> readyQueue;
+  queue <Pid> readyQueue;
 
-int quantum; 
+  int quantum; 
 
-int runningTimeScliceQuantum; 
+  int runningTimeScliceQuantum; 
 
-Pid currentProcess; 
+  Pid currentProcess; 
 
 public:
   RRSchedulingPolicy(int quantum = 1);
