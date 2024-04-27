@@ -105,7 +105,9 @@ Pid RRSchedulingPolicy::dispatch()
 bool RRSchedulingPolicy::preempt()
 {
   
-  if(runningTimeScliceQuantum >= quantum){
+  runningTimeScliceQuantum++;
+  if(runningTimeScliceQuantum >= quantum)
+  {
     readyQueue.push(currentProcess); 
     currentProcess = IDLE; 
 
@@ -126,7 +128,7 @@ bool RRSchedulingPolicy::preempt()
  void RRSchedulingPolicy::resetPolicy()
 {
   runningTimeScliceQuantum = 0; 
-  currentProcess = IDLE; 
+  currentProcess = 0; 
   // make sure the queue is empty, swap a queue with a known
   // empty queue will free up the old queue and ensure we start
   // with an empty one.
