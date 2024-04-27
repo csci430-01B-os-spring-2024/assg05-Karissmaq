@@ -36,12 +36,14 @@ using namespace std;
  * a simulation, the most basic information will be what process scheduling
  * policy is to be used for the simulation.
  *
- * We default to a FCFS scheduling policy if none is specified when
+ * We default to a STR scheduling policy if none is specified when
  * the simulation starts.
  */
+
+
 SchedulingSystem::SchedulingSystem()
 {
-  // create a FCFS scheduling policy by default
+  // create a STR scheduling policy by default
   this->policy = new FCFSSchedulingPolicy();
 
   // make sure we are mutually associated, that the policy knows
@@ -129,6 +131,62 @@ void SchedulingSystem::resetSystem()
   policy->resetPolicy();
 }
 
+/**
+ * getSystemTime() function
+ *
+ * This function returns the current system time of the simulator.
+ * It is using an int.
+ *
+ */
+
+int SchedulingSystem::getSystemTime() const
+{
+  return systemTime;
+}
+
+/**
+ * getNumProcesses() function
+ *
+ * This function returns the total number of processes in
+ * the process table. It will be the total num of proccesses we will
+ * be running in the system.
+ */
+int SchedulingSystem::getNumProcesses() const
+{
+  return numProcesses;
+}
+
+/**
+ * isCpuIdle() function
+ *
+ * This function returns true if the cup is currently IDLE
+ * or false is it doee not.
+ */
+
+bool SchedulingSystem::isCpuIdle() const
+{
+  return cpu == -1;
+}
+
+/**
+ * getRunningProcessName() function
+ *
+ * This funcation returns the name of he current
+ *  process running "IDLE".
+ *
+ */
+string SchedulingSystem::getRunningProcessName() const
+{
+  if (isCpuIdle())
+  {
+    return "IDLE";
+  }
+  else
+  {
+    return process[cpu].name;
+  }
+}
+
 /** @brief get pid of running process
  *
  * Returns the process identifier (pid) of the process
@@ -157,6 +215,28 @@ Process* SchedulingSystem::getProcessTable() const
 {
   return process;
 }
+
+/** 
+allProcessesDone() function 
+
+This function checks to see if any process is still not done.
+If the process is still not done it will return false 
+whule if it is done it will return true. 
+ */
+
+bool SchedulingSystem::allProcessesDone() const 
+{
+   for (int i = 0; i < numProcesses; ++i) {
+    if (!process[i].done) {
+      return false;
+    }
+  }
+  return true;
+} 
+
+
+
+
 
 /** @brief final results table
  *
@@ -441,6 +521,31 @@ void SchedulingSystem::checkProcessArrivals()
 }
 
 /**
+
+dispatchCpuIfIdle() function 
+
+This function verifies whether the CPU is currently idle and 
+attempts to allocate a process. It selects a new process to be a
+ssigned to the CPU and allows it to run for bit. 
+
+*/
+
+void SchedulingSystem:: dispatchCpuIfIdle() 
+{
+  
+if (isCpuIdle())
+{
+  cpu = policy -> dispatch(); 
+  if (process[cpu].startTime == NOT_STARTED)
+  {
+    process[cpu].startTime = systemTime; 
+  }
+}
+  
+}
+
+
+/**
  * @brief check if a process did arrive
  *
  * Convenience method for some policies.  If a process does
@@ -491,6 +596,33 @@ void SchedulingSystem::simulateCpuCycle()
     schedule += "I  ";
   }
 }
+
+/**
+checkProcessFinished() function 
+
+This function examines whether the currently running process 
+has completed its execution. Once complete it updates 
+the process metrics and resets the CPU to an idle state.
+*/
+void SchedulingSystem::checkProcessFinished()
+{
+  if (isCpuIdle())
+  {
+    return; 
+  }
+
+  if (process[cpu].usedTime >= process[cpu].serviceTime)
+  {
+    process[cpu].endTime = systemTime; 
+    process[cpu].done = true; 
+
+    cpu = IDLE; 
+  }
+}
+
+
+
+
 
 /**
  * @brief process preemption
@@ -584,7 +716,7 @@ void SchedulingSystem::runSimulation(bool verbose)
   // to make scheduling decisions.  We keep running the simulation until
   // all processes in the process table are done
   string schedule = "";
-  /*
+  
   while (not allProcessesDone())
   {
     //cout << "runSimulation()> systemTime: " << systemTime << endl;
@@ -610,7 +742,7 @@ void SchedulingSystem::runSimulation(bool verbose)
     // is up to date for scheduling policies to use
     updateProcessStatistics();
   }
-  */
+  
 
   // Display scheduling simulation results if asked too
   if (verbose)
